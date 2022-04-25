@@ -30,12 +30,14 @@ function inicializarContadores() {
 function inicializarCronometro() {
     var tempoRestante = $('#tempo').text();
     campoDigitacao.one('focus', function() {
+        $("#botao-reiniciar").attr("disabled",true);
         var cronometroID = setInterval(function() {
             tempoRestante--;
             $('#tempo').text(tempoRestante);
             if(tempoRestante < 1) {
                 campoDigitacao.attr('disabled', true);
                 clearInterval(cronometroID);
+                $("#botao-reiniciar").attr("disabled", false);
             }
         }, 1000);
     })
